@@ -21,7 +21,7 @@ public:
         return oss.str();
     }
 
-    static float get_hour() {
+    static float get_hours() {
         std::time_t now = std::time(nullptr);
         std::tm* localTime = std::localtime(&now);
         return localTime->tm_hour + (localTime->tm_min / 60.0f) + (localTime->tm_sec / 3600.0f);
