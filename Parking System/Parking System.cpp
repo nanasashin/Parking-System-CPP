@@ -1,31 +1,37 @@
 #include <iostream>
 #include <vector>
-#include "utils.hpp"
 #include "unit.hpp"
 #include "pages.hpp"
 
 std::vector<Parking_Unit> Unit;
 std::vector<Parking_Unit> Record;
 
+void init(std::vector<Parking_Unit>& unit_vec) {
+    Parking_Unit sample_unit;
+    for (int i = 0; i < unit_vec.size(); i++) unit_vec.push_back(sample_unit);
+}
+
 int main () {
     int input;
     bool done = false;
-    Utils::init<Parking_Unit>(Unit);
+    init(Unit);
 
     while (!done) {
-        Pages<Utils>::front_page(&input);
+        Pages::front_page(&input);
 
         switch (input) {
-        case Section::enter_park:
-            Pages<Utils>::park_page<Parking_Unit>(Unit);
-            break;
-        case Section::exit_park:
-            break; 
-        case Section::quit:
-            done = true;
-            break;
-        default:
-            break;
+            case Section::enter_park:
+                Pages::park_page<Parking_Unit>(Unit);
+                break;
+            case Section::exit_park:
+                Pages::exit_page<Parking_Unit>(Unit);
+                break; 
+            case Section::quit:
+                done = true;
+                break;
+            default:
+                break;
         }
     }
+
 }

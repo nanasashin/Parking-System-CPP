@@ -14,10 +14,10 @@ struct Parking_Unit {
     float change;
 };
 
-struct Section {
-    static const int enter_park = 0;
-    static const int exit_park = 1;
-    static const int quit = 2;
+enum Section {
+    enter_park = 0,
+    exit_park = 1,
+    quit = 2,
 };
 
 #endif
