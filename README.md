@@ -1,1 +1,1 @@
-An Pracitce Project for C++
+An Practice Project for C++
