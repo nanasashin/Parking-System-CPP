@@ -22,6 +22,16 @@ public:
         float paid_amount;
         float change;
     };
+
+    struct new_line {
+        bool put = true;
+    };
+
+    struct range{
+        int min = 0;
+        int max = 0;
+    };
+
 };
 
 enum section {
@@ -36,6 +46,13 @@ enum rate_fee {
     day = 60,
     month = 1200,
     year = 12000
+};
+
+enum subscription_type {
+    hourly,
+    daily,
+    monthly,
+    yearly
 };
 
 #endif

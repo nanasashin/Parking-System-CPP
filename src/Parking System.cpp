@@ -8,7 +8,7 @@ std::vector<unit::parking_unit> Record;
 
 void init(std::vector<unit::parking_unit>& unit_vec) {
     unit::parking_unit sample_unit;
-    for (int i = 0; i < unit_vec.size(); i++) unit_vec.push_back(sample_unit);
+    for (int i = 0; i < 20; i++) unit_vec.push_back(sample_unit);
 }
 
 int main () {
@@ -36,4 +36,5 @@ int main () {
         }
     }
 
+    return 0;
 }

@@ -19,10 +19,10 @@ public:
         return str_to_date_time_unit(date_time.str());
     }
 
-    static void print_line(char line_char, bool new_line=false) {
+    static void print_line(unit::new_line new_line = unit::new_line{}, char line_char='=') {
         for (int i = 0; i < line_size; i++) std::cout << line_char;
         std::cout << "\n";
-        if (new_line) std::cout << "\n";
+        if (new_line.put) std::cout << "\n";
     }
 
     static std::string center_text(std::string text) {
