@@ -3,11 +3,11 @@
 #include "unit.hpp"
 #include "pages.hpp"
 
-std::vector<Parking_Unit> Unit;
-std::vector<Parking_Unit> Record;
+std::vector<unit::parking_unit> Unit;
+std::vector<unit::parking_unit> Record;
 
-void init(std::vector<Parking_Unit>& unit_vec) {
-    Parking_Unit sample_unit;
+void init(std::vector<unit::parking_unit>& unit_vec) {
+    unit::parking_unit sample_unit;
     for (int i = 0; i < unit_vec.size(); i++) unit_vec.push_back(sample_unit);
 }
 
@@ -17,16 +17,18 @@ int main () {
     init(Unit);
 
     while (!done) {
-        Pages::front_page(&input);
+        pages::front_page(&input);
 
         switch (input) {
-            case Section::enter_park:
-                Pages::park_page<Parking_Unit>(Unit);
+            case section::enter_park:
+                pages::park_page(Unit);
                 break;
-            case Section::exit_park:
-                Pages::exit_page<Parking_Unit>(Unit);
+            case section::exit_park:
+                pages::exit_page(Unit, Record);
                 break; 
-            case Section::quit:
+            case section::view_records:
+                break;
+            case section::quit:
                 done = true;
                 break;
             default:

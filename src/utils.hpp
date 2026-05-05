@@ -7,24 +7,16 @@
 #include <sstream>
 #include <cmath>
 #include <cstdlib>
+#include "unit.hpp"
 
-class Utils {
-private:
-    static const int line_size = 50;
-
+class utils {
 public: 
-    static std::string get_date_time() {
+    static unit::date_and_time get_full_date() {
         auto t = std::time(nullptr);
         auto tm = *std::localtime(&t);
-        std::ostringstream oss;
-        oss << std::put_time(&tm, "%Y-%m-%d %H:%M");
-        return oss.str();
-    }
-
-    static float get_hours() {
-        std::time_t now = std::time(nullptr);
-        std::tm* localTime = std::localtime(&now);
-        return localTime->tm_hour + (localTime->tm_min / 60.0f) + (localTime->tm_sec / 3600.0f);
+        std::ostringstream date_time;
+        date_time << std::put_time(&tm, "%M%H%d%m%Y");
+        return str_to_date_time_unit(date_time.str());
     }
 
     static void print_line(char line_char, bool new_line=false) {
@@ -72,6 +64,19 @@ public:
     static bool is_inbound(int input, int max) {
         return (max >= input) ? true : false;
     }
+
+private:
+    static const int line_size = 50;
+
+    static unit::date_and_time str_to_date_time_unit(std::string temp) {
+        int mins = std::stoi(std::string{temp[0], temp[1]});
+        int hours = std::stoi(std::string{temp[2], temp[3]});
+        int day = std::stoi(std::string{temp[4], temp[5]});
+        int month = std::stoi(std::string{temp[6], temp[7]});
+        int year = std::stoi(std::string{temp[8], temp[9], temp[10], temp[11]});
+        return unit::date_and_time {mins, hours, day, month, year};
+    }
+        
 };
 
 #endif
